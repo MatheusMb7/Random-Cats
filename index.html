@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gatinhos 🐱</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      color: white;
+      flex-direction: column;
+    }
+    img {
+      max-width: 400px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gatinho do dia 🐱</h1>
+  <img id="catImage" src="" alt="Gatinho">
+
+  <script>
+    async function carregarGato() {
+      try {
+        const resposta = await fetch('https://api.thecatapi.com/v1/images/search');
+        const dados = await resposta.json();
+
+        document.getElementById('catImage').src = dados[0].url;
+      } catch (erro) {
+        document.body.innerHTML += "<p>Erro ao carregar imagem 😿</p>";
+      }
+    }
+
+    carregarGato();
+  </script>
+
+</body>
+</html>
